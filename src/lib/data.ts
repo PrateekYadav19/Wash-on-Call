@@ -101,8 +101,8 @@ export const PROVIDERS: Provider[] = NAMES.map(([name, city, area], i) => {
     services: SERVICE_POOL.slice(i % 3, (i % 3) + 4),
     about:
       "Trained, background-verified washers using waterless and low-water techniques, pH-neutral foam and microfibre-only contact. We arrive with our own water, power and equipment.",
-    cover: img(COVERS[i % COVERS.length]),
-    gallery: [0, 1, 2, 3].map((k) => img(COVERS[(i + k + 1) % COVERS.length], 800)),
+    cover: img(COVERS[i % COVERS.length]!),
+    gallery: [0, 1, 2, 3].map((k) => img(COVERS[(i + k + 1) % COVERS.length]!, 800)),
   };
 });
 
@@ -206,12 +206,12 @@ const REVIEW_TEXTS = [
 
 export const REVIEWS: Review[] = Array.from({ length: 40 }, (_, i) => ({
   id: `r${i + 1}`,
-  providerId: PROVIDERS[i % PROVIDERS.length].id,
-  name: REVIEW_NAMES[i % REVIEW_NAMES.length],
-  rating: [5, 5, 4, 5, 4, 3][i % 6],
-  date: `${(i % 28) + 1} ${["Jan", "Feb", "Mar", "Apr"][i % 4]} 2026`,
-  text: REVIEW_TEXTS[i % REVIEW_TEXTS.length],
-  vehicle: VEHICLES[i % VEHICLES.length].type,
+  providerId: PROVIDERS[i % PROVIDERS.length]!.id,
+  name: REVIEW_NAMES[i % REVIEW_NAMES.length]!,
+  rating: [5, 5, 4, 5, 4, 3][i % 6]!,
+  date: `${(i % 28) + 1} ${["Jan", "Feb", "Mar", "Apr"][i % 4]!} 2026`,
+  text: REVIEW_TEXTS[i % REVIEW_TEXTS.length]!,
+  vehicle: VEHICLES[i % VEHICLES.length]!.type,
 }));
 
 export type BookingStatus =
@@ -266,7 +266,7 @@ export const BOOKINGS: Booking[] = [
     slot: "4:00 PM – 5:00 PM",
     amount: 1014,
     status: "En route",
-    washer: WASHERS[0],
+    washer: WASHERS[0]!,
     otp: "4821",
   },
   {
@@ -280,7 +280,7 @@ export const BOOKINGS: Booking[] = [
     slot: "11:00 AM – 12:00 PM",
     amount: 412,
     status: "Washing",
-    washer: WASHERS[1],
+    washer: WASHERS[1]!,
     otp: "1190",
   },
   {
@@ -294,7 +294,7 @@ export const BOOKINGS: Booking[] = [
     slot: "9:00 AM – 11:00 AM",
     amount: 2123,
     status: "Completed",
-    washer: WASHERS[2],
+    washer: WASHERS[2]!,
     otp: "7712",
   },
   {
@@ -308,7 +308,7 @@ export const BOOKINGS: Booking[] = [
     slot: "7:00 AM – 10:00 AM",
     amount: 5896,
     status: "Booked",
-    washer: WASHERS[3],
+    washer: WASHERS[3]!,
     otp: "3390",
   },
   {
@@ -322,7 +322,7 @@ export const BOOKINGS: Booking[] = [
     slot: "5:00 PM – 6:00 PM",
     amount: 413,
     status: "Arrived",
-    washer: WASHERS[4],
+    washer: WASHERS[4]!,
     otp: "9014",
   },
 ];

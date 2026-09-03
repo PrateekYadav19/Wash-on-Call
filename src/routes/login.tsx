@@ -30,7 +30,7 @@ function Login() {
   const refs = useRef<(HTMLInputElement | null)[]>([]);
   const navigate = useNavigate();
 
-  const submitOtp = (code: string) => {
+  const submitOtp = (code: string): void => {
     if (code.length === 4) {
       toast.success("Signed in");
       navigate({ to: "/account" });

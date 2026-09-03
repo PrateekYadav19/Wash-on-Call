@@ -33,7 +33,7 @@ export const Route = createFileRoute("/partners/")({
   component: PartnersPage,
 });
 
-const FAQ = [
+const FAQ: [string, string][] = [
   ["What does it cost to join?", "Nothing upfront. We take a 20% platform commission per completed booking — no listing fee, no subscription."],
   ["How do payouts work?", "Weekly bank transfers every Tuesday for jobs completed in the previous week, with a downloadable statement."],
   ["Do you send us customers outside our area?", "No. You set your service radius and pincodes; we only route jobs inside it."],

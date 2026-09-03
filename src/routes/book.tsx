@@ -36,11 +36,13 @@ import { cn } from "@/lib/utils";
 type Search = { provider?: string; pkg?: string; vehicle?: VehicleType };
 
 export const Route = createFileRoute("/book")({
-  validateSearch: (search: Record<string, unknown>): Search => ({
-    provider: typeof search.provider === "string" ? search.provider : undefined,
-    pkg: typeof search.pkg === "string" ? search.pkg : undefined,
-    vehicle: typeof search.vehicle === "string" ? (search.vehicle as VehicleType) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): Search => {
+    const out: Search = {};
+    if (typeof search["provider"] === "string") out.provider = search["provider"];
+    if (typeof search["pkg"] === "string") out.pkg = search["pkg"];
+    if (typeof search["vehicle"] === "string") out.vehicle = search["vehicle"] as VehicleType;
+    return out;
+  },
   head: () => ({
     meta: [
       { title: "Book a Doorstep Wash — WashOnCall" },
@@ -82,7 +84,7 @@ function BookPage() {
   const [providerId, setProviderId] = useState<string | undefined>(search.provider);
   const [pkgId, setPkgId] = useState<string>(search.pkg ?? "foam");
   const [addons, setAddons] = useState<string[]>([]);
-  const [date, setDate] = useState(DATES[0].key);
+  const [date, setDate] = useState(DATES[0]!.key);
   const [slot, setSlot] = useState<string>("");
   const [coupon, setCoupon] = useState("");
   const [applied, setApplied] = useState(0);
@@ -445,7 +447,7 @@ function BookPage() {
                     <div className="mt-8 rounded-2xl border border-border bg-secondary/30 p-5 text-sm">
                       <div className="flex items-center justify-between">
                         <span className="text-muted-foreground">Provider</span>
-                        <span>{provider?.name ?? nearby[0].name}</span>
+                        <span>{provider?.name ?? nearby[0]!.name}</span>
                       </div>
                       <div className="mt-2 flex items-center justify-between">
                         <span className="text-muted-foreground">Package</span>
