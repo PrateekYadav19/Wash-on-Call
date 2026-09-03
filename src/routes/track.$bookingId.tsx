@@ -39,7 +39,7 @@ export const Route = createFileRoute("/track/$bookingId")({
 
 function TrackPage() {
   const { bookingId } = Route.useParams();
-  const booking = BOOKINGS.find((b) => b.id === bookingId) ?? BOOKINGS[0];
+  const booking = BOOKINGS.find((b) => b.id === bookingId) ?? BOOKINGS[0]!;
   const provider = getProvider(booking.providerId)!;
   const pkg = getPackage(booking.packageId)!;
   const current = TRACK_STEPS.indexOf(booking.status);

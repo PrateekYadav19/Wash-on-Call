@@ -30,7 +30,7 @@ function Login() {
   const refs = useRef<(HTMLInputElement | null)[]>([]);
   const navigate = useNavigate();
 
-  const submitOtp = (code: string) => {
+  const submitOtp = (code: string): void => {
     if (code.length === 4) {
       toast.success("Signed in");
       navigate({ to: "/account" });
@@ -66,7 +66,10 @@ function Login() {
                 exit={{ opacity: 0, x: -16 }}
                 onSubmit={(e) => {
                   e.preventDefault();
-                  if (phone.length !== 10) return toast.error("Enter a valid 10-digit number");
+                  if (phone.length !== 10) {
+                    toast.error("Enter a valid 10-digit number");
+                    return;
+                  }
                   setStage("otp");
                   toast.success("OTP sent");
                 }}
