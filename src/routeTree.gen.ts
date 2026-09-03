@@ -10,7 +10,11 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AccountRouteImport } from './routes/account'
 import { Route as BookRouteImport } from './routes/book'
+import { Route as LoginRouteImport } from './routes/login'
+import { Route as PartnersIndexRouteImport } from './routes/partners/index'
+import { Route as PartnersDashboardRouteImport } from './routes/partners/dashboard'
 import { Route as ProvidersIndexRouteImport } from './routes/providers/index'
 import { Route as ProvidersIdRouteImport } from './routes/providers/$id'
 import { Route as TrackBookingIdRouteImport } from './routes/track.$bookingId'
@@ -20,9 +24,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BookRoute = BookRouteImport.update({
   id: '/book',
   path: '/book',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersIndexRoute = PartnersIndexRouteImport.update({
+  id: '/partners/',
+  path: '/partners/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PartnersDashboardRoute = PartnersDashboardRouteImport.update({
+  id: '/partners/dashboard',
+  path: '/partners/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProvidersIndexRoute = ProvidersIndexRouteImport.update({
@@ -43,46 +67,83 @@ const TrackBookingIdRoute = TrackBookingIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/book': typeof BookRoute
+  '/login': typeof LoginRoute
+  '/partners/dashboard': typeof PartnersDashboardRoute
   '/providers/$id': typeof ProvidersIdRoute
   '/track/$bookingId': typeof TrackBookingIdRoute
+  '/partners/': typeof PartnersIndexRoute
   '/providers/': typeof ProvidersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/book': typeof BookRoute
+  '/login': typeof LoginRoute
+  '/partners/dashboard': typeof PartnersDashboardRoute
   '/providers/$id': typeof ProvidersIdRoute
   '/track/$bookingId': typeof TrackBookingIdRoute
+  '/partners': typeof PartnersIndexRoute
   '/providers': typeof ProvidersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/account': typeof AccountRoute
   '/book': typeof BookRoute
+  '/login': typeof LoginRoute
+  '/partners/dashboard': typeof PartnersDashboardRoute
   '/providers/$id': typeof ProvidersIdRoute
   '/track/$bookingId': typeof TrackBookingIdRoute
+  '/partners/': typeof PartnersIndexRoute
   '/providers/': typeof ProvidersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/book' | '/providers/$id' | '/track/$bookingId' | '/providers/'
+    | '/'
+    | '/account'
+    | '/book'
+    | '/login'
+    | '/partners/dashboard'
+    | '/providers/$id'
+    | '/track/$bookingId'
+    | '/partners/'
+    | '/providers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/book' | '/providers/$id' | '/track/$bookingId' | '/providers'
+  to:
+    | '/'
+    | '/account'
+    | '/book'
+    | '/login'
+    | '/partners/dashboard'
+    | '/providers/$id'
+    | '/track/$bookingId'
+    | '/partners'
+    | '/providers'
   id:
     | '__root__'
     | '/'
+    | '/account'
     | '/book'
+    | '/login'
+    | '/partners/dashboard'
     | '/providers/$id'
     | '/track/$bookingId'
+    | '/partners/'
     | '/providers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AccountRoute: typeof AccountRoute
   BookRoute: typeof BookRoute
+  LoginRoute: typeof LoginRoute
+  PartnersDashboardRoute: typeof PartnersDashboardRoute
   ProvidersIdRoute: typeof ProvidersIdRoute
   TrackBookingIdRoute: typeof TrackBookingIdRoute
+  PartnersIndexRoute: typeof PartnersIndexRoute
   ProvidersIndexRoute: typeof ProvidersIndexRoute
 }
 
@@ -95,11 +156,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/book': {
       id: '/book'
       path: '/book'
       fullPath: '/book'
       preLoaderRoute: typeof BookRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners/': {
+      id: '/partners/'
+      path: '/partners'
+      fullPath: '/partners/'
+      preLoaderRoute: typeof PartnersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/partners/dashboard': {
+      id: '/partners/dashboard'
+      path: '/partners/dashboard'
+      fullPath: '/partners/dashboard'
+      preLoaderRoute: typeof PartnersDashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/providers/': {
@@ -128,9 +217,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AccountRoute: AccountRoute,
   BookRoute: BookRoute,
+  LoginRoute: LoginRoute,
+  PartnersDashboardRoute: PartnersDashboardRoute,
   ProvidersIdRoute: ProvidersIdRoute,
   TrackBookingIdRoute: TrackBookingIdRoute,
+  PartnersIndexRoute: PartnersIndexRoute,
   ProvidersIndexRoute: ProvidersIndexRoute,
 }
 export const routeTree = rootRouteImport
