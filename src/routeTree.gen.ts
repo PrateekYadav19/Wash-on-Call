@@ -13,6 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as RefundsRouteImport } from './routes/refunds'
+import { Route as TermsRouteImport } from './routes/terms'
 import { Route as PartnersIndexRouteImport } from './routes/partners/index'
 import { Route as PartnersDashboardRouteImport } from './routes/partners/dashboard'
 import { Route as ProvidersIndexRouteImport } from './routes/providers/index'
@@ -37,6 +40,21 @@ const BookRoute = BookRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RefundsRoute = RefundsRouteImport.update({
+  id: '/refunds',
+  path: '/refunds',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnersIndexRoute = PartnersIndexRouteImport.update({
@@ -70,6 +88,9 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/book': typeof BookRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
+  '/refunds': typeof RefundsRoute
+  '/terms': typeof TermsRoute
   '/partners/dashboard': typeof PartnersDashboardRoute
   '/providers/$id': typeof ProvidersIdRoute
   '/track/$bookingId': typeof TrackBookingIdRoute
@@ -81,6 +102,9 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/book': typeof BookRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
+  '/refunds': typeof RefundsRoute
+  '/terms': typeof TermsRoute
   '/partners/dashboard': typeof PartnersDashboardRoute
   '/providers/$id': typeof ProvidersIdRoute
   '/track/$bookingId': typeof TrackBookingIdRoute
@@ -93,6 +117,9 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/book': typeof BookRoute
   '/login': typeof LoginRoute
+  '/privacy': typeof PrivacyRoute
+  '/refunds': typeof RefundsRoute
+  '/terms': typeof TermsRoute
   '/partners/dashboard': typeof PartnersDashboardRoute
   '/providers/$id': typeof ProvidersIdRoute
   '/track/$bookingId': typeof TrackBookingIdRoute
@@ -106,6 +133,9 @@ export interface FileRouteTypes {
     | '/account'
     | '/book'
     | '/login'
+    | '/privacy'
+    | '/refunds'
+    | '/terms'
     | '/partners/dashboard'
     | '/providers/$id'
     | '/track/$bookingId'
@@ -117,6 +147,9 @@ export interface FileRouteTypes {
     | '/account'
     | '/book'
     | '/login'
+    | '/privacy'
+    | '/refunds'
+    | '/terms'
     | '/partners/dashboard'
     | '/providers/$id'
     | '/track/$bookingId'
@@ -128,6 +161,9 @@ export interface FileRouteTypes {
     | '/account'
     | '/book'
     | '/login'
+    | '/privacy'
+    | '/refunds'
+    | '/terms'
     | '/partners/dashboard'
     | '/providers/$id'
     | '/track/$bookingId'
@@ -140,6 +176,9 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   BookRoute: typeof BookRoute
   LoginRoute: typeof LoginRoute
+  PrivacyRoute: typeof PrivacyRoute
+  RefundsRoute: typeof RefundsRoute
+  TermsRoute: typeof TermsRoute
   PartnersDashboardRoute: typeof PartnersDashboardRoute
   ProvidersIdRoute: typeof ProvidersIdRoute
   TrackBookingIdRoute: typeof TrackBookingIdRoute
@@ -175,6 +214,27 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/refunds': {
+      id: '/refunds'
+      path: '/refunds'
+      fullPath: '/refunds'
+      preLoaderRoute: typeof RefundsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partners/': {
@@ -220,6 +280,9 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   BookRoute: BookRoute,
   LoginRoute: LoginRoute,
+  PrivacyRoute: PrivacyRoute,
+  RefundsRoute: RefundsRoute,
+  TermsRoute: TermsRoute,
   PartnersDashboardRoute: PartnersDashboardRoute,
   ProvidersIdRoute: ProvidersIdRoute,
   TrackBookingIdRoute: TrackBookingIdRoute,
