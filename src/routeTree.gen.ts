@@ -12,6 +12,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BookRouteImport } from './routes/book'
 import { Route as ProvidersIndexRouteImport } from './routes/providers/index'
+import { Route as ProvidersIdRouteImport } from './routes/providers/$id'
+import { Route as TrackBookingIdRouteImport } from './routes/track.$bookingId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,34 +30,59 @@ const ProvidersIndexRoute = ProvidersIndexRouteImport.update({
   path: '/providers/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProvidersIdRoute = ProvidersIdRouteImport.update({
+  id: '/providers/$id',
+  path: '/providers/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TrackBookingIdRoute = TrackBookingIdRouteImport.update({
+  id: '/track/$bookingId',
+  path: '/track/$bookingId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
+  '/providers/$id': typeof ProvidersIdRoute
+  '/track/$bookingId': typeof TrackBookingIdRoute
   '/providers/': typeof ProvidersIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/book': typeof BookRoute
+  '/providers/$id': typeof ProvidersIdRoute
+  '/track/$bookingId': typeof TrackBookingIdRoute
   '/providers': typeof ProvidersIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/book': typeof BookRoute
+  '/providers/$id': typeof ProvidersIdRoute
+  '/track/$bookingId': typeof TrackBookingIdRoute
   '/providers/': typeof ProvidersIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/book' | '/providers/'
+  fullPaths:
+    '/' | '/book' | '/providers/$id' | '/track/$bookingId' | '/providers/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/book' | '/providers'
-  id: '__root__' | '/' | '/book' | '/providers/'
+  to: '/' | '/book' | '/providers/$id' | '/track/$bookingId' | '/providers'
+  id:
+    | '__root__'
+    | '/'
+    | '/book'
+    | '/providers/$id'
+    | '/track/$bookingId'
+    | '/providers/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BookRoute: typeof BookRoute
+  ProvidersIdRoute: typeof ProvidersIdRoute
+  TrackBookingIdRoute: typeof TrackBookingIdRoute
   ProvidersIndexRoute: typeof ProvidersIndexRoute
 }
 
@@ -82,12 +109,28 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProvidersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/providers/$id': {
+      id: '/providers/$id'
+      path: '/providers/$id'
+      fullPath: '/providers/$id'
+      preLoaderRoute: typeof ProvidersIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/track/$bookingId': {
+      id: '/track/$bookingId'
+      path: '/track/$bookingId'
+      fullPath: '/track/$bookingId'
+      preLoaderRoute: typeof TrackBookingIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BookRoute: BookRoute,
+  ProvidersIdRoute: ProvidersIdRoute,
+  TrackBookingIdRoute: TrackBookingIdRoute,
   ProvidersIndexRoute: ProvidersIndexRoute,
 }
 export const routeTree = rootRouteImport
