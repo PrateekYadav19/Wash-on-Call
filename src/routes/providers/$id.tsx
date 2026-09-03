@@ -200,8 +200,8 @@ function ProviderProfile() {
                   </div>
                 </div>
                 <div className="space-y-4">
-                  {shown.slice(0, 6).map((r) => (
-                    <div key={r.id + r.name} className="rounded-2xl border border-border bg-card/40 p-5">
+                  {shown.slice(0, 6).map((r, ri) => (
+                    <div key={r.id + r.name + ri} className="rounded-2xl border border-border bg-card/40 p-5">
                       <div className="flex items-center justify-between">
                         <p className="text-sm font-medium">{r.name}</p>
                         <span className="text-xs text-muted-foreground">{r.date}</span>
